@@ -71,7 +71,15 @@ Por favor seleccione un 'level' correcto. Compruebelos con 'show_available_elect
 
 # ITERATE CALL FOR EVERY ELECTION ROW IN THE NESTED DATA FRAME
 
-  nested_election <-  nested %>%
+
+  # GET DATA
+
+  # Set default value for try()
+
+  default <- NULL
+
+
+  nested_election <-  base::suppressWarnings(base::try(default <-nested %>%
         dplyr::mutate(election = purrr::map2(.x = data,
                                              .y = id,
                                              ~ electorAr::get_election_data(
@@ -80,7 +88,15 @@ Por favor seleccione un 'level' correcto. Compruebelos con 'show_available_elect
                                                           round = .x$round,
                                                           year = .x$year,
                                                           level = .x$level)
-                                                        ))
+                                                        )
+                      )
+        ))
+
+
+
+
+
+
 
 
 

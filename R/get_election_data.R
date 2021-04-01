@@ -210,29 +210,38 @@ Por favor seleccione una eleccipn valida. Consultelas con 'show_available_electi
 
 
 
-## FAIL SAFELEY
-  url <- paste0("https://github.com/electorArg/PolAr_Data/blob/master/data/",
+## ELECTION URL
+  url <- paste0("https://raw.githubusercontent.com/PoliticaArgentina/data_warehouse/master/electorAr/data/escrutinios_provisorios/",
          district, "_",
          category, "_",
          round,
-         year, ".csv?raw=true")
+         year, ".csv")
 
+  # GET DATA
 
+  # Set default value for try()
 
-  check <- httr::GET(url)
+  default <- NULL
 
-  httr::stop_for_status(x = check,
-                        task = "Fail to download election data. Source is not available // La fuente de datos electorales no esta disponible")
+  df <- base::suppressWarnings(base::try(default <-  vroom::vroom(file = url,
+                                                                  col_types = vroom::cols(),
+                                                                  progress = FALSE),
+                                         silent = TRUE))
 
+  if(is.null(default)){
 
+    df <- base::message("Fail to download data. Source is not available // La fuente de datos no esta disponible")
 
-  # get import - RAW or with LEVLES of aggregation
+  } else {
+
+     df <- df
+
+  # import data RAW or with LEVLES of aggregation
 
 
               if(raw == FALSE) {
 
-           df <-   readr::read_csv(url,
-                                   col_types = readr::cols()) %>%
+           df <-   df %>%
                dplyr::group_by_at(levels) %>%
                dplyr::mutate(mesa = as.character(mesa)) %>% ### fix bug (Salta elections detecting mesa as integer)
                dplyr::summarise_if(is.numeric, .funs = sum) %>%
@@ -249,8 +258,7 @@ Por favor seleccione una eleccipn valida. Consultelas con 'show_available_electi
              } else {
 
 
-           df <- readr::read_csv(url,
-                                 col_types = readr::cols()) %>%
+           df <- df  %>%
                   dplyr::ungroup() %>%
                   dplyr::mutate(codprov = as.character(codprov)) %>%
                   dplyr::left_join(codProv, by = "codprov")%>%
@@ -282,6 +290,7 @@ Por favor seleccione una eleccipn valida. Consultelas con 'show_available_electi
                  dplyr::group_by_at(levels)
 
                }
-      }
+       }
+  }
 
 

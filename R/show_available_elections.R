@@ -33,16 +33,27 @@ show_available_elections <- function(viewer = FALSE){
 
   # Get list of files from github data repo
 
-  url <- glue::glue('https://github.com/electorArg/PolAr_Data/tree/master/data')
+  url <- 'https://github.com/electorArg/PolAr_Data/tree/master/data'
 
-  ## FAIL SAFELEY
+  # GET DATA
 
-  check <- httr::GET(url)
+  # Set default value for try()
 
-  httr::stop_for_status(x = check,
-                        task = "Fail to download data. Source is not available // La fuente de datos no esta disponible")
+  default <- NULL
+
+  df <- base::suppressWarnings(base::try(default <- xml2::read_html(url),
+                                         silent = TRUE))
+
+  if(is.null(default)){
+
+    df <- base::message("Fail to download data. Source is not available // La fuente de datos no esta disponible")
+
+  } else {
+
+    pg <- df
 
 
+    # Get files list from data_warehouse github repo
 
 
   pg <- xml2::read_html(url)
@@ -52,20 +63,21 @@ show_available_elections <- function(viewer = FALSE){
     rvest::html_attr(name = "href" ) %>%
     stringr::str_match('.*csv') %>%
     stats::na.omit() %>%
-    tibble::as_tibble()  %>%
+    base::as.data.frame()  %>%
     dplyr::rename(name = V1) %>%
     dplyr::mutate(name = stringr::str_remove(name, pattern = "/electorArg/PolAr_Data/blob/master/data/")) %>%
     tidyr::separate(col = name, into = c("district", "category", "round"),
              sep = "\\_", remove = T) %>%
     dplyr::mutate(year = stringr::str_remove_all(round, "\\D"),
            round = stringr::str_remove_all(round, "\\d")) %>%
-    dplyr::mutate(round = stringr::str_remove_all(round, ".csv"))
+    dplyr::mutate(round = stringr::str_remove_all(round, ".csv")) %>%
+    tibble::as_tibble()
 
 
 
   #### province character code and names ######
 
-  filelist <- filelist %>%
+  df <- filelist %>%
     dplyr::mutate(NOMBRE = dplyr::case_when(
       district =="arg" ~    "argentina",
       district =="caba" ~     "caba",
@@ -100,7 +112,7 @@ show_available_elections <- function(viewer = FALSE){
 
   if(viewer == TRUE){
 
-     x <-  filelist %>%
+     df <-  filelist %>%
       DT::datatable(options = list(
                     language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json')))%>%
        DT::formatStyle(
@@ -114,13 +126,14 @@ show_available_elections <- function(viewer = FALSE){
          backgroundColor = DT::styleEqual(c("paso","gral"),
                                           c("#f1a340","#998ec3")))
 
-     print(x)
+     print(df)
 
 
      } else {
-      filelist
+      df
   }
 
 
-}
+    }
+  }
 
