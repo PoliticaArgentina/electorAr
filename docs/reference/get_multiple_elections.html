@@ -49,7 +49,7 @@
 
 <meta property="og:title" content="Descarga resultados de múltiples elecciones
 (Download multiple election electoral data) — get_multiple_elections" />
-<meta property="og:description" content="Esta función permite descargar restultados de una multiplicidad de elecciones al mismo tiempo.
+<meta property="og:description" content="Esta función permite descargar resultados de una multiplicidad de elecciones al mismo tiempo.
 (Function that downloads multiple national electoral data with one call)" />
 <meta property="og:image" content="https://politicaargentina.github.io/electorAr/logo.png" />
 
@@ -126,38 +126,47 @@
     </div>
 
     <div class="ref-description">
-    <p>Esta función permite descargar restultados de una multiplicidad de elecciones al mismo tiempo.
-(<em>Function that downloads multiple national electoral data with one call</em>)</p>
+    <p>Esta función permite descargar resultados de una multiplicidad de elecciones al mismo tiempo.</p>
+<p>(<em>Function that downloads multiple national electoral data with one call</em>)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_multiple_elections</span><span class='op'>(</span><span class='va'>data</span>, unnest <span class='op'>=</span> <span class='cn'>FALSE</span>, level <span class='op'>=</span> <span class='st'>"provincia"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_multiple_elections</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  source <span class='op'>=</span> <span class='cn'>NULL</span>,
+  unnest <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  level <span class='op'>=</span> <span class='st'>"provincia"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>data.frame con tantas filas como elecciones se quiere descargar y cuatro columnas con las siguientes variables: <em>district</em>, <em>category</em>, <em>round</em>, <em>year</em>
-(<em>data.frame with as many rows as elections you want to download and four columns with the following variables:<em>district</em>, <em>category</em>, <em>round</em>, <em>year</em></em>).</p></td>
+      <td><p>data.frame con tantas filas como elecciones se quiere descargar y cuatro columnas con las siguientes variables: <em>district</em>, <em>category</em>, <em>round</em>, <em>year</em></p>
+<p>(<em>data.frame with as many rows as elections you want to download and four columns with the following variables:<em>district</em>, <em>category</em>, <em>round</em>, <em>year</em></em>).</p></td>
+    </tr>
+    <tr>
+      <th>source</th>
+      <td><p>Fuente de los datos. Las opciones son 'data' para datos<code><a href='get_election_data.html'>get_election_data</a></code> y 'results' para <code><a href='get_election_results.html'>get_election_results</a></code></p></td>
     </tr>
     <tr>
       <th>unnest</th>
-      <td><p>un boleano que devuelve los datos anidados cuando <code>TRUE</code> agrupando cada elección o un data.frame cuando es <code>FALSE</code> que incluye una variable de id de la elección
-(<em>a boolean that returns nested data when <code>TRUE</code>, grouping each election or a data.frame when <code>FALSE</code> that includes an election id variable</em>).</p></td>
+      <td><p>un boleano que devuelve los datos anidados cuando <code>TRUE</code> agrupando cada elección o un data.frame cuando es <code>FALSE</code> que incluye una variable de id de la elección</p>
+<p>(<em>a boolean that returns nested data when <code>TRUE</code>, grouping each election or a data.frame when <code>FALSE</code> that includes an election id variable</em>).</p></td>
     </tr>
     <tr>
       <th>level</th>
-      <td><p>parametro para definir el nivel de agregación de los datos que se quieren descargar ('provincia', 'departamento', 'circuito'). Por defecto es provincia
-(<em>parameter to define the level of aggregation of the data to be downloaded ('province', 'department', 'circuit'). Default is province</em>).</p></td>
+      <td><p>parámetro para definir el nivel de agregación de los datos que se quieren descargar ('provincia', 'departamento', 'circuito'). Por defecto es provincia</p>
+<p>(<em>parameter to define the level of aggregation of the data to be downloaded ('province', 'department', 'circuit'). Default is province</em>).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>devuelve un tibble con <code>class "grouped_df", "tbl_df","tbl", "data.frame"</code> con los resultados de las eleccion seleccionadas, con tantas
-filas como elecciones se consultaron y dos columnas: <em>id</em> de la eleccion construido como concatenación de los parametros
-<code>year_category_round_year</code>; <em>election</em> contiene un listado de tibbles con los resultados agregados a nivel provincial para cada elección
-(<em>returns a tibble of <code>class "grouped_df", "tbl_df", "tbl", "data.frame"</code> with as many rows as elections requested and two columns:
+    <p>devuelve un tibble con <code>class "grouped_df", "tbl_df","tbl", "data.frame"</code> con los resultados de las elección seleccionadas, con tantas
+filas como elecciones se consultaron y dos columnas: <em>id</em> de la elección construido como concatenación de los parámetros
+<code>year_category_round_year</code>; <em>election</em> contiene un listado de tibbles con los resultados agregados a nivel provincial para cada elección</p>
+<p>(<em>returns a tibble of <code>class "grouped_df", "tbl_df", "tbl", "data.frame"</code> with as many rows as elections requested and two columns:
 <em>id</em> of the election build as a concatenation of the parameters <code>year_category_round_year</code>; <em>election</em> contains a list of tibbles with
 electoral results aggregated at the provincial level for each each row</em>).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -165,17 +174,32 @@ electoral results aggregated at the provincial level for each each row</em>).</p
     <div class='dont-index'><p><code><a href='get_election_data.html'>get_election_data</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
- <span class='fu'>electorAr</span><span class='fu'>::</span><span class='fu'><a href='show_available_elections.html'>show_available_elections</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+ <span class='fu'>electorAr</span><span class='fu'>::</span><span class='fu'><a href='show_available_elections.html'>show_available_elections</a></span><span class='op'>(</span>source <span class='op'>=</span> <span class='st'>'data'</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>district</span> <span class='op'>==</span> <span class='st'>"caba"</span>,
               <span class='va'>category</span> <span class='op'>==</span> <span class='st'>"dip"</span>,
               <span class='va'>round</span> <span class='op'>==</span> <span class='st'>"paso"</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>caba_paso_diputados</span>
 
 <span class='va'>caba_paso_diputados</span>
-
- <span class='fu'>get_multiple_elections</span><span class='op'>(</span><span class='va'>caba_paso_diputados</span><span class='op'>)</span>
- <span class='op'>}</span>
-</div></pre>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 5</span><span>
+#&gt;   district category round year  NOMBRE
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> caba     dip      paso  2011  CABA  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> caba     dip      paso  2013  CABA  
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> caba     dip      paso  2015  CABA  
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> caba     dip      paso  2017  CABA  
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> caba     dip      paso  2019  CABA  </div><div class='input'>
+ <span class='fu'>get_multiple_elections</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>caba_paso_diputados</span>, source <span class='op'>=</span> <span class='st'>'data'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 2</span><span>
+#&gt; </span><span style='color: #949494;'># Groups:   id [5]</span><span>
+#&gt;   id                 election                 
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;glue&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span>                   
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> caba_dip_paso_2011 </span><span style='color: #949494;'>&lt;grouped_df[,8] [14 x 8]&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> caba_dip_paso_2013 </span><span style='color: #949494;'>&lt;grouped_df[,8] [15 x 8]&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> caba_dip_paso_2015 </span><span style='color: #949494;'>&lt;grouped_df[,8] [15 x 8]&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> caba_dip_paso_2017 </span><span style='color: #949494;'>&lt;grouped_df[,8] [18 x 8]&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> caba_dip_paso_2019 </span><span style='color: #949494;'>&lt;grouped_df[,8] [14 x 8]&gt;</span><span></div><div class='input'> <span class='co'># }</span>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -12,14 +12,16 @@ authors:
   Iván Lewin:
     href: https://github.com/ivanlewin
 reference:
-- title: "Data"
-  desc: Functions for exploring and downloading data
+- title: Data
+  desc: Functions for exploring and downloading data with two different workflows .
 - subtitle: Explore
   contents:
   - 'show_available_elections'
 - subtitle: Download
   contents:
-  - starts_with("get")
+  - 'get_election_data'
+  - 'get_election_results'
+  - 'get_multiple_elections'
 - title: "Computing"
   desc: "Functions for computation"
   contents:

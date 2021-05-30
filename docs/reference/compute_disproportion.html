@@ -128,8 +128,8 @@ y de bancas obtenidos por los partidos políticos (Gallagher por defecto)
 
     <div class="ref-description">
     <p>Función que calcula el índice de desproporción del sistema de partidos midiendo la distancia relativa entre proporción de votos
-y de bancas obtenidos por los partidos políticos (Gallagher por defecto)
-(<em>Function that computes the party system disproportion index</em>)</p>
+y de bancas obtenidos por los partidos políticos (Gallagher por defecto)</p>
+<p>(<em>Function that computes the party system disproportion index</em>)</p>
     </div>
 
     <pre class="usage"><span class='fu'>compute_disproportion</span><span class='op'>(</span><span class='va'>data</span>, formula <span class='op'>=</span> <span class='st'>"gallagher"</span><span class='op'>)</span></pre>
@@ -139,8 +139,8 @@ y de bancas obtenidos por los partidos políticos (Gallagher por defecto)
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>la base de datos para hacer el cálculo obtenida con <code><a href='get_election_data.html'>get_election_data</a></code>
-(<em>tibble downloaded with <code><a href='get_election_data.html'>get_election_data</a></code> needed to compute disproportion</em>).</p></td>
+      <td><p>la base de datos para hacer el cálculo obtenida con <code><a href='get_election_data.html'>get_election_data</a></code></p>
+<p>(<em>tibble downloaded with <code><a href='get_election_data.html'>get_election_data</a></code> needed to compute disproportion</em>).</p></td>
     </tr>
     <tr>
       <th>formula</th>
@@ -150,22 +150,22 @@ y de bancas obtenidos por los partidos políticos (Gallagher por defecto)
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Devuelve un tibble con <code>class "tbl_df","tbl", "data.frame"</code> con el cómputo
-(<em>Returns a tibble with <code>class "tbl_df", "tbl", "data.frame"</code> with the computation</em>).</p>
+    <p>Devuelve un tibble con <code>class "tbl_df","tbl", "data.frame"</code> con el cómputo</p>
+<p>(<em>Returns a tibble with <code>class "tbl_df", "tbl", "data.frame"</code> with the computation</em>).</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Una discusión sobre distintas formulas para el cálculo puede encontrarse en
-<em><a href='https://journals.sagepub.com/doi/10.1177/001041407901200101'>"Taagepera and Grofman (2009)"</a></em>
-(A discussion of different ways to compute it can be found at
+<em><a href='https://journals.sagepub.com/doi/10.1177/001041407901200101'>"Taagepera and Grofman (2009)"</a></em></p>
+<p>(A discussion of different ways to compute it can be found at
 <em><a href='https://journals.sagepub.com/doi/10.1177/001041407901200101'>"Taagepera and Grofman (2009)"</a></em>)</p>
 <p><strong>REQUISITO:</strong></p>
 <p>El formato de <code>data</code> debe ser <code>long</code> para calcular <code>compute_disproportion</code>.
-Si <code>data</code> es <em>wide</em> se puede transformar con <code><a href='make_long.html'>make_long</a></code>
-(<em><code>long</code> format of <code>data</code> is required for <code>compute_disproportion</code>.
+Si <code>data</code> es <em>wide</em> se puede transformar con <code><a href='make_long.html'>make_long</a></code></p>
+<p>(<em><code>long</code> format of <code>data</code> is required for <code>compute_disproportion</code>.
 If <code>data</code> is in <em>wide</em> format you can transform it with <code><a href='make_long.html'>make_long</a></code></em>)</p>
 <p><strong>NOTA:</strong></p>
-<p>para calcular el grado de desproporción el parámetro <code>level</code> de <code><a href='get_election_data.html'>get_election_data</a></code> debe ser el que descarga por defecto: "provincia"
-(<em>To compute the degree of disproportion, the parameter <code>level</code> of <code><a href='get_election_data.html'>get_election_data</a></code> must be "provincia" (<em>default</em>)</em>).</p>
+<p>para calcular el grado de desproporción el parámetro <code>level</code> de <code><a href='get_election_data.html'>get_election_data</a></code> debe ser el que descarga por defecto: "provincia"</p>
+<p>(<em>To compute the degree of disproportion, the parameter <code>level</code> of <code><a href='get_election_data.html'>get_election_data</a></code> must be "provincia" (<em>default</em>)</em>).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='compute_competitiveness.html'>compute_competitiveness</a>, <a href='compute_seats.html'>compute_seats</a>, <a href='compute_nep.html'>compute_nep</a></code></p></div>

@@ -9,16 +9,19 @@ compute_concentration(data)
 }
 \arguments{
 \item{data}{la base de datos para hacer el cálculo obtenida con \code{\link{get_election_data}}
+
 (\emph{tiblle downloaded with \code{\link{get_election_data}} needed to compute disproportion}).#'}
 }
 \value{
 Devuelve un tibble con \code{class "tbl_df","tbl", "data.frame"} con el cómputo de concentración. Puede tomar valores entre \code{0} y \code{1},
 siendo \code{concentracion = 1} el de mayor grado (un solo partido obtiene todos los votos).
+
 (\emph{Returns a tibble with \code{class "tbl_df", "tbl", "data.frame"} with concentration computation. It can take values between \code{0}, \code{1},
 with \code{concentration = 1} being the highest degree (a single party gets all the votes)}).
 }
 \description{
 Calcula el índice de concentración electoral de una elección en función del porecentaje acumulado de las dos listas más votadas
+
 (\emph{Computes the electoral concentration index of an election based on the accumulated percentage of the two most voted lists})
 }
 \details{
@@ -26,6 +29,7 @@ Calcula el índice de concentración electoral de una elección en función del 
 
 El formato de \code{data} debe ser \code{long} para calcular \code{\link{compute_concentration}}.
 Si \code{data} es \emph{wide} se puede transformar con \code{\link{make_long}}
+
 (\emph{\code{long} format of \code{data} is required for \code{\link{compute_concentration}}.
 If \code{data} is in \emph{wide} format you can transform it with \code{\link{make_long}}})
 
@@ -33,6 +37,7 @@ If \code{data} is in \emph{wide} format you can transform it with \code{\link{ma
 
 el grado de concentración será sensible al nivel de agregación de los datos determinados por el parámetro \code{level} de
 \code{\link{get_election_data}}
+
 (\emph{the degree of concentration will be sensitive to the level of aggregation of the data determined by the parameter \code{level} of
 \code{\link{get_election_data}}}).
 }

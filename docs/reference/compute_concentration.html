@@ -126,8 +126,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Calcula el índice de concentración electoral de una elección en función del porecentaje acumulado de las dos listas más votadas
-(<em>Computes the electoral concentration index of an election based on the accumulated percentage of the two most voted lists</em>)</p>
+    <p>Calcula el índice de concentración electoral de una elección en función del porecentaje acumulado de las dos listas más votadas</p>
+<p>(<em>Computes the electoral concentration index of an election based on the accumulated percentage of the two most voted lists</em>)</p>
     </div>
 
     <pre class="usage"><span class='fu'>compute_concentration</span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span></pre>
@@ -137,28 +137,28 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>la base de datos para hacer el cálculo obtenida con <code><a href='get_election_data.html'>get_election_data</a></code>
-(<em>tiblle downloaded with <code><a href='get_election_data.html'>get_election_data</a></code> needed to compute disproportion</em>).#'</p></td>
+      <td><p>la base de datos para hacer el cálculo obtenida con <code><a href='get_election_data.html'>get_election_data</a></code></p>
+<p>(<em>tiblle downloaded with <code><a href='get_election_data.html'>get_election_data</a></code> needed to compute disproportion</em>).#'</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Devuelve un tibble con <code>class "tbl_df","tbl", "data.frame"</code> con el cómputo de concentración. Puede tomar valores entre <code>0</code> y <code>1</code>,
-siendo <code>concentracion = 1</code> el de mayor grado (un solo partido obtiene todos los votos).
-(<em>Returns a tibble with <code>class "tbl_df", "tbl", "data.frame"</code> with concentration computation. It can take values between <code>0</code>, <code>1</code>,
+siendo <code>concentracion = 1</code> el de mayor grado (un solo partido obtiene todos los votos).</p>
+<p>(<em>Returns a tibble with <code>class "tbl_df", "tbl", "data.frame"</code> with concentration computation. It can take values between <code>0</code>, <code>1</code>,
 with <code>concentration = 1</code> being the highest degree (a single party gets all the votes)</em>).</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><strong>REQUISITO:</strong></p>
 <p>El formato de <code>data</code> debe ser <code>long</code> para calcular <code>compute_concentration</code>.
-Si <code>data</code> es <em>wide</em> se puede transformar con <code><a href='make_long.html'>make_long</a></code>
-(<em><code>long</code> format of <code>data</code> is required for <code>compute_concentration</code>.
+Si <code>data</code> es <em>wide</em> se puede transformar con <code><a href='make_long.html'>make_long</a></code></p>
+<p>(<em><code>long</code> format of <code>data</code> is required for <code>compute_concentration</code>.
 If <code>data</code> is in <em>wide</em> format you can transform it with <code><a href='make_long.html'>make_long</a></code></em>)</p>
 <p><strong>NOTA:</strong></p>
 <p>el grado de concentración será sensible al nivel de agregación de los datos determinados por el parámetro <code>level</code> de
-<code><a href='get_election_data.html'>get_election_data</a></code>
-(<em>the degree of concentration will be sensitive to the level of aggregation of the data determined by the parameter <code>level</code> of
+<code><a href='get_election_data.html'>get_election_data</a></code></p>
+<p>(<em>the degree of concentration will be sensitive to the level of aggregation of the data determined by the parameter <code>level</code> of
 <code><a href='get_election_data.html'>get_election_data</a></code></em>).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

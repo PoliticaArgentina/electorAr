@@ -4,14 +4,17 @@
 #' @description
 #' Función que calcula el índice de desproporción del sistema de partidos midiendo la distancia relativa entre proporción de votos
 #' y de bancas obtenidos por los partidos políticos (Gallagher por defecto)
+#'
 #'  (\emph{Function that computes the party system disproportion index})
 #'
 #' @param data la base de datos para hacer el cálculo obtenida con \code{\link{get_election_data}}
+#'
 #'  (\emph{tibble downloaded with \code{\link{get_election_data}} needed to compute disproportion}).
 #' @param formula variante de cálculo elegido ('gallagher', 'cox_shugart', 'lijphart' o 'rae'). Por defecto es la formula de Gallagher
 #'
 #' @details Una discusión sobre distintas formulas para el cálculo puede encontrarse en
 #' \emph{\href{https://journals.sagepub.com/doi/10.1177/001041407901200101}{"Taagepera and Grofman (2009)"}}
+#'
 #' (A discussion of different ways to compute it can be found at
 #' \emph{\href{https://journals.sagepub.com/doi/10.1177/001041407901200101}{"Taagepera and Grofman (2009)"}})
 #'
@@ -19,17 +22,20 @@
 #'
 #' @details El formato de \code{data} debe ser \code{long} para calcular \code{\link{compute_disproportion}}.
 #'  Si \code{data} es \emph{wide} se puede transformar con \code{\link{make_long}}
+#'
 #'  (\emph{\code{long} format of \code{data} is required for \code{\link{compute_disproportion}}.
 #'  If \code{data} is in \emph{wide} format you can transform it with \code{\link{make_long}}})
 #'
 #' @details \strong{NOTA:}
 #'
 #' @details para calcular el grado de desproporción el parámetro \code{level} de \code{\link{get_election_data}} debe ser el que descarga por defecto: "provincia"
+#'
 #'  (\emph{To compute the degree of disproportion, the parameter \code{level} of \code{\link{get_election_data}} must be "provincia" (\emph{default})}).
 #'
 #' @seealso  \code{\link{compute_competitiveness}, \link{compute_seats}, \link{compute_nep}}
 #'
 #' @return  Devuelve un tibble con \code{class "tbl_df","tbl", "data.frame"} con el cómputo
+#'
 #'  (\emph{Returns a tibble with \code{class "tbl_df", "tbl", "data.frame"} with the computation}).
 #'
 #' @examples

@@ -123,8 +123,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Funcion que describe el grado de competencia de una eleccion
-(<em>Function that describes the degree of competition of an election</em>)</p>
+    <p>Funcion que describe el grado de competencia de una eleccion</p>
+<p>(<em>Function that describes the degree of competition of an election</em>)</p>
     </div>
 
     <pre class="usage"><span class='fu'>compute_competitiveness</span><span class='op'>(</span><span class='va'>data</span>, level <span class='op'>=</span> <span class='st'>"provincia"</span><span class='op'>)</span></pre>
@@ -134,14 +134,14 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>un tibble guardado como objeto en el Enviroment luego de consultar <code><a href='get_election_data.html'>get_election_data</a></code> o <code><a href='get_election_results.html'>get_election_results</a></code>
-(<em>A tibble saved as an object in the Enviroment after querying <code><a href='get_election_data.html'>get_election_data</a></code> or <code><a href='get_election_results.html'>get_election_results</a></code></em>).</p></td>
+      <td><p>un tibble guardado como objeto en el Enviroment luego de consultar <code><a href='get_election_data.html'>get_election_data</a></code> o <code><a href='get_election_results.html'>get_election_results</a></code></p>
+<p>(<em>A tibble saved as an object in the Enviroment after querying <code><a href='get_election_data.html'>get_election_data</a></code> or <code><a href='get_election_results.html'>get_election_results</a></code></em>).</p></td>
     </tr>
     <tr>
       <th>level</th>
       <td><p>un character que establece el nivel de agregacion sobre el que se quiere calcular la competitividad:
-por defualt es <code>provincia</code> y para datos obtenidos con <code><a href='get_election_data.html'>get_election_data</a></code> se desagregan las observaciones asignando los valores <code>departamento</code> o <code>circuito</code> al parametro
-(<em>Establishes the level of aggregation on which you want to compute competitiveness: by definition it is <code>provincia</code>
+por defualt es <code>provincia</code> y para datos obtenidos con <code><a href='get_election_data.html'>get_election_data</a></code> se desagregan las observaciones asignando los valores <code>departamento</code> o <code>circuito</code> al parametro</p>
+<p>(<em>Establishes the level of aggregation on which you want to compute competitiveness: by definition it is <code>provincia</code>
 and for data obtained with <code><a href='get_election_data.html'>get_election_data</a></code> the observations are disaggregated by assigning the values <code>departamento</code> or <code>circuito</code> to the parameter</em>).</p></td>
     </tr>
     </table>
@@ -150,8 +150,8 @@ and for data obtained with <code><a href='get_election_data.html'>get_election_d
 
     <p>devuelve un tibble con <code>class "tbl_df","tbl", "data.frame"</code> con el computo de competitividad de una elccion. El resultado puede
 ser un valor entre 0 y 1,
-los cuales representan falta de competencia y competitivdad maxima, respectivamente
-(<em>returns a tibble with <code>class "tbl_df", "tbl", "data.frame"</code> with the computation of the level of competitiveness of an elction.
+los cuales representan falta de competencia y competitivdad maxima, respectivamente</p>
+<p>(<em>returns a tibble with <code>class "tbl_df", "tbl", "data.frame"</code> with the computation of the level of competitiveness of an elction.
 The result can be a value between 0 and 1, which represent a lack of competition and maximum competitiveness, respectively</em>).</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -160,8 +160,8 @@ Puede tomar valores entre \([0,1]\) donde \(1\) es lo más comeptitivo (\(a = 50
 La fórmula utilizada es:  $$Competitividad = 1 - (a - b)$$</p>
 <p><strong>REQUISITO:</strong></p>
 <p>Para datos obtenidos con <code><a href='get_election_data.html'>get_election_data</a></code> el formato de <code>data</code> debe ser <code>long</code> para calcular <code>compute_competitiveness</code>.
-Si <code>data</code> es <em>wide</em> se puede transformar con <code><a href='make_long.html'>make_long</a></code>
-(<em>For data obtained with <code><a href='get_election_data.html'>get_election_data</a></code> <code>long</code> format of <code>data</code> is required for <code>compute_competitiveness</code>. If <code>data</code> is in <em>wide</em> format
+Si <code>data</code> es <em>wide</em> se puede transformar con <code><a href='make_long.html'>make_long</a></code></p>
+<p>(<em>For data obtained with <code><a href='get_election_data.html'>get_election_data</a></code> <code>long</code> format of <code>data</code> is required for <code>compute_competitiveness</code>. If <code>data</code> is in <em>wide</em> format
 you can transform it with <code><a href='make_long.html'>make_long</a></code></em>).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
