@@ -58,8 +58,8 @@ Los datos no estan en un formato largo. Use 'make_long ()' para transformarlos")
 
         default <- NULL
 
-        df <- base::suppressWarnings(base::try(default <- readr::read_csv(file = url,
-                                                                          col_types = readr::cols()),
+        df <- base::suppressWarnings(base::try(default <- vroom::vroom(file = url,
+                                                                          col_types = vroom::cols()),
                                                silent = TRUE))
 
         if(is.null(default)){

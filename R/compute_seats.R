@@ -15,7 +15,7 @@
 #' 2. La cantidad de escaños de cada provincia dependen de su población con un mínimo de \eqn{5} por provincia.
 #' En caso de Senadores se asignan \eqn{2} al de mayor votos y \eqn{1} al segundo.
 #'
-#' 3. En el caso de Diputados, La renovación de bancas de cada provincia se realiza por mitades cada dos años. Cuando la cantidad de
+#' 3. En el caso de Diputados, La renovación de bancas de cada provincia serealiza por mitades cada dos años. Cuando la cantidad de
 #' escaños que corresponden a una provincia es impar las mismas eligen un diputado más en uno de los turnos: o concurrentes
 #' con elecciones presidenciales, o en elecciones de mitad de termino presidencial.
 #' En el caso de Senadores su mandato es de 6 años y se renuevan parcialmente por grupos de 8 provincias.
@@ -24,7 +24,7 @@
 #' @examples
 #'  \dontrun{
 # this is a long running example
-#'  electorAr::get_election_data(district = "caba",
+#' electorAr::get_election_data(district = "caba",
 #'                           category = "dip",
 #'                           round = "gral",
 #'                           year = 2007) -> caba_dip_2007
@@ -52,12 +52,19 @@ No se detecto acceso a internet. Por favor chequear la conexion.")
 
   # Check parameters and data format
 
+  assertthat::assert_that(is.data.frame(data),
+                          msg = glue::glue("data is not a valid object. You can download a valid data.frame with get_election_data()"))
+
   assertthat::assert_that(dim(data)[2]< 10,
                           msg = "data is not at valid level. Download it at 'provincia' level")
 
   assertthat::assert_that("listas" %in% colnames(data),
                           msg = "data is not in a long format. Use 'make_long()' to transform it")
 
+
+  assertthat::assert_that(unique(data$category) %in% c("dip", "sen"),
+                          msg = "compute_seats() is only possible for legislative elections ('dip', 'sen').
+                          Explore them with show_available_elections(source = 'data')")
 
 
 
@@ -78,8 +85,8 @@ No se detecto acceso a internet. Por favor chequear la conexion.")
 
 
 
-  seats_election <- readr::read_csv(url,
-                                    col_types = readr::cols())
+  seats_election <- vroom::vroom(url,
+                                 col_types = vroom::cols())
 
 
   ### WRAGNLE DATA

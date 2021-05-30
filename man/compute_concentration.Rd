@@ -40,7 +40,7 @@ el grado de concentración será sensible al nivel de agregación de los datos d
 
 tucuman_dip_gral_2017
 
-tucuman_dip_gral_2017 \%>\% 
+tucuman_dip_gral_2017 \%>\%
   compute_concentration()
 
 }

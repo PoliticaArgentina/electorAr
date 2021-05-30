@@ -21,7 +21,7 @@ de mayoría/minoría para Senaor Nacional en función de votos obtenidos
 \item La distribución de escaños esta regida por la formula del sistema \emph{D'Hondt} para Diputados y mayoría/minoría para Senadores.
 \item La cantidad de escaños de cada provincia dependen de su población con un mínimo de \eqn{5} por provincia.
 En caso de Senadores se asignan \eqn{2} al de mayor votos y \eqn{1} al segundo.
-\item En el caso de Diputados, La renovación de bancas de cada provincia se realiza por mitades cada dos años. Cuando la cantidad de
+\item En el caso de Diputados, La renovación de bancas de cada provincia serealiza por mitades cada dos años. Cuando la cantidad de
 escaños que corresponden a una provincia es impar las mismas eligen un diputado más en uno de los turnos: o concurrentes
 con elecciones presidenciales, o en elecciones de mitad de termino presidencial.
 En el caso de Senadores su mandato es de 6 años y se renuevan parcialmente por grupos de 8 provincias.
@@ -29,7 +29,7 @@ En el caso de Senadores su mandato es de 6 años y se renuevan parcialmente por 
 }
 \examples{
  \dontrun{
- electorAr::get_election_data(district = "caba",
+electorAr::get_election_data(district = "caba",
                           category = "dip",
                           round = "gral",
                           year = 2007) -> caba_dip_2007

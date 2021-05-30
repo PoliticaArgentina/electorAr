@@ -41,35 +41,42 @@
 
 get_multiple_elections <- function(data,
                                    unnest = FALSE,
-                                   level = "provincia"){
-
+                                   level = "provincia") {
   ## Check for internet coection
-  attempt::stop_if_not(.x = curl::has_internet(),
-                       msg = "Internet access was not detected. Please check your connection //
-No se detecto acceso a internet. Por favor chequear la conexion.")
+  attempt::stop_if_not(
+    .x = curl::has_internet(),
+    msg = "Internet access was not detected. Please check your connection //
+No se detecto acceso a internet. Por favor chequear la conexion."
+  )
 
   # level check
 
-  assertthat::assert_that(is.character(level),
-                          msg = "'level' must be a character string. Options = c('provicina', 'departamento', 'circuito') //
-'level' tiene que ser un character string. Opciones = c('provincia', 'departamento', 'circuito')")
+  assertthat::assert_that(
+    is.character(level),
+    msg = "'level' must be a character string. Options = c('provicina', 'departamento', 'circuito') //
+'level' tiene que ser un character string. Opciones = c('provincia', 'departamento', 'circuito')"
+  )
 
-  assertthat::assert_that(level %in%  c('provincia', 'departamento', 'circuito'),
-                          msg = "Please select a correct 'level'. Check them with 'show_available_elections'() //
-Por favor seleccione un 'level' correcto. Compruebelos con 'show_available_elections()'")
+  assertthat::assert_that(
+    level %in%  c('provincia', 'departamento', 'circuito'),
+    msg = "Please select a correct 'level'. Check them with 'show_available_elections'() //
+Por favor seleccione un 'level' correcto. Compruebelos con 'show_available_elections()'"
+  )
 
 
 
   # NEST ELECTIONS
   nested <- data %>%
     dplyr::select(-NOMBRE) %>%
-    dplyr::mutate(id = glue::glue("{district}_{category}_{round}_{year}"),
-                  year = as.integer(year),
-                  level = level) %>%
+    dplyr::mutate(
+      id = glue::glue("{district}_{category}_{round}_{year}"),
+      year = as.integer(year),
+      level = level
+    ) %>%
     dplyr::group_by(id) %>%
     tidyr::nest()
 
-# ITERATE CALL FOR EVERY ELECTION ROW IN THE NESTED DATA FRAME
+  # ITERATE CALL FOR EVERY ELECTION ROW IN THE NESTED DATA FRAME
 
 
   # GET DATA
@@ -79,44 +86,40 @@ Por favor seleccione un 'level' correcto. Compruebelos con 'show_available_elect
   default <- NULL
 
 
-  nested_election <-  base::suppressWarnings(base::try(default <-nested %>%
-        dplyr::mutate(election = purrr::map2(.x = data,
-                                             .y = id,
-                                             ~ electorAr::get_election_data(
-                                                          district = .x$district,
-                                                          category = .x$category,
-                                                          round = .x$round,
-                                                          year = .x$year,
-                                                          level = .x$level)
-                                                        )
-                      )
-        ))
+  nested_election <-
+    base::suppressWarnings(base::try(default <- nested %>%
+                                       dplyr::mutate(
+                                         election = purrr::map2(
+                                           .x = data,
+                                           .y = id,
+                                           .f = ~ electorAr::get_election_data(
+                                             district = .x$district,
+                                             category = .x$category,
+                                             round = .x$round,
+                                             year = .x$year,
+                                             level = .x$level
+                                           )
+                                         )
+                                       ))
+    )
+
+
+  # NESTED OR UNNESTED OUTPUT
+
+  if (unnest == TRUE)
+  {
+    nested_election %>%
+      dplyr::ungroup() %>%
+      tidyr::unnest(cols = c(election)) %>%
+      dplyr::select(-c(data))
 
 
 
 
+  } else{
+    nested_election %>%
+      dplyr::select(-c(data))
 
-
-
-
-
-       if(unnest == TRUE){
-
-
-         nested_election %>%
-           dplyr::ungroup() %>%
-           tidyr::unnest(cols = c(election)) %>%
-           dplyr::select(-c(data))
-
-
-
-
-       }else{
-
-
-         nested_election %>%
-           dplyr::select(-c(data))
-
-         }
+  }
 
 }

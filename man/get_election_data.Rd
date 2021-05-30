@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_election_data.R
 \name{get_election_data}
 \alias{get_election_data}
-\title{Descarga bases de resultados electorales
+\title{Descarga bases de datos electorales
 (\emph{Download electoral data})}
 \usage{
 get_election_data(
@@ -42,8 +42,8 @@ devuelve un tibble con \code{class "grouped_df", "tbl_df","tbl", "data.frame"} c
 (\emph{returns a tibble with electoral results of interest with \code{class "grouped_df", "tbl_df","tbl", "data.frame"}}).
 }
 \description{
-Función que descarga resultados electorales nacionales desde 2007
-(\emph{Function that downloads national electoral data since 2007})
+Función que descarga datos electorales de escrutinios provisorios nacionales desde 2003
+(\emph{Function that downloads national electoral data since 2003 from provisional count})
 }
 \examples{
  get_election_data(district = "caba",

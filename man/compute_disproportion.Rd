@@ -9,7 +9,7 @@ compute_disproportion(data, formula = "gallagher")
 }
 \arguments{
 \item{data}{la base de datos para hacer el cálculo obtenida con \code{\link{get_election_data}}
-(\emph{tiblle downloaded with \code{\link{get_election_data}} needed to compute disproportion}).}
+(\emph{tibble downloaded with \code{\link{get_election_data}} needed to compute disproportion}).}
 
 \item{formula}{variante de cálculo elegido ('gallagher', 'cox_shugart', 'lijphart' o 'rae'). Por defecto es la formula de Gallagher}
 }
@@ -18,8 +18,8 @@ Devuelve un tibble con \code{class "tbl_df","tbl", "data.frame"} con el cómputo
 (\emph{Returns a tibble with \code{class "tbl_df", "tbl", "data.frame"} with the computation}).
 }
 \description{
-Función que calcula el índice de desprorpoción del sistema de partidos midiendo la distancia relativa entre proporción de votos
-y de bancas obtendios por los partidos políticos (Gallagher por defecto)
+Función que calcula el índice de desproporción del sistema de partidos midiendo la distancia relativa entre proporción de votos
+y de bancas obtenidos por los partidos políticos (Gallagher por defecto)
 (\emph{Function that computes the party system disproportion index})
 }
 \details{
@@ -37,7 +37,7 @@ If \code{data} is in \emph{wide} format you can transform it with \code{\link{ma
 
 \strong{NOTA:}
 
-para calcular el grado de desprorpoción el parámetro \code{level} de \code{\link{get_election_data}} debe ser el que descarga por defecto: "provincia"
+para calcular el grado de desproporción el parámetro \code{level} de \code{\link{get_election_data}} debe ser el que descarga por defecto: "provincia"
 (\emph{To compute the degree of disproportion, the parameter \code{level} of \code{\link{get_election_data}} must be "provincia" (\emph{default})}).
 }
 \examples{
@@ -45,7 +45,7 @@ para calcular el grado de desprorpoción el parámetro \code{level} de \code{\li
 tucuman_dip_gral_2017
 
 tucuman_dip_gral_2017 \%>\%
-  compute_disproportion()
+  electorAr::compute_disproportion()
 
 }
 \seealso{

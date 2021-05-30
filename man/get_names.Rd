@@ -27,10 +27,10 @@ nombres de listas con \code{\link{get_names}}. Si \code{data} es \emph{wide} se 
 \emph{wide} format you can transform it with \code{\link{make_long}}}).
 }
 \examples{
- 
+
  tucuman_dip_gral_2017
- 
- tucuman_dip_gral_2017 \%>\% 
+
+ tucuman_dip_gral_2017 \%>\%
      get_names()
-   
+
 }

@@ -22,6 +22,6 @@ Un data frame con 6 filas y 8 variables:
 tucuman_dip_gral_2017
 }
 \description{
-Un tibble con los resultados agregados de la eleccion general para Diputado Nacional por la provincia de Tucuman en 2017
+Un tibble con los resultados agregados de la elección general para Diputado Nacional por la provincia de Tucuman en 2017
 }
 \keyword{datasets}

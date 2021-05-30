@@ -5,9 +5,11 @@
 \title{Diccionario de elecciones disponibles
 (\emph{Elections collection})}
 \usage{
-show_available_elections(viewer = FALSE)
+show_available_elections(source = NULL, viewer = FALSE)
 }
 \arguments{
+\item{source}{Fuente de consulta. Las opciones son 'data' para \code{\link{get_election_data}} y 'results' para \code{\link{get_election_results}}}
+
 \item{viewer}{Por defecto es \code{FALSE}. Cuando \code{TRUE} devuelve una tabla en el \emph{Viewer} de \emph{RStudio}
 (\emph{The default is \code{FALSE}. When \code{TRUE} it returns a table in \emph{RStudio Viewer}}).}
 }
@@ -20,12 +22,12 @@ When parameter is set to \code{viewer = FALSE} it returns a tibble and when it i
 object of \code{class "datatables","htmlwidget"}}).
 }
 \description{
-Función que devuelve un tibble con los parámetros necesarios para llamar elecciones con \code{\link{get_election_data}}
-(\emph{Function that returns a tibble with the necessary parameters to call elections with} \code{\link{get_election_data}}).
+Función que devuelve un tibble con los parámetros necesarios para llamar elecciones con \code{\link{get_election_data}} o \code{\link{get_election_results}}
+(\emph{Function that returns a tibble with the necessary parameters to call elections with} \code{\link{get_election_data}} or \code{\link{get_election_results}}).
 }
 \examples{
 
- show_available_elections(viewer = FALSE)
+ show_available_elections(source= 'data', viewer = FALSE)
 
 
 }

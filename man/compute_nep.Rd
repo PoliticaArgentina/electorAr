@@ -68,8 +68,8 @@ will be made: \code{provincia}, \code{departamento} or \code{circuito}}).
 
 tucuman_dip_gral_2017
 
-tucuman_dip_gral_2017 \%>\% 
-  compute_nep()
+tucuman_dip_gral_2017 \%>\%
+  electorAr::compute_nep()
 
 }
 \seealso{

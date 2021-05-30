@@ -2,12 +2,12 @@
 #'  (\emph{Computes Party System Disproportion})
 #'
 #' @description
-#' Función que calcula el índice de desprorpoción del sistema de partidos midiendo la distancia relativa entre proporción de votos
-#' y de bancas obtendios por los partidos políticos (Gallagher por defecto)
+#' Función que calcula el índice de desproporción del sistema de partidos midiendo la distancia relativa entre proporción de votos
+#' y de bancas obtenidos por los partidos políticos (Gallagher por defecto)
 #'  (\emph{Function that computes the party system disproportion index})
 #'
 #' @param data la base de datos para hacer el cálculo obtenida con \code{\link{get_election_data}}
-#'  (\emph{tiblle downloaded with \code{\link{get_election_data}} needed to compute disproportion}).
+#'  (\emph{tibble downloaded with \code{\link{get_election_data}} needed to compute disproportion}).
 #' @param formula variante de cálculo elegido ('gallagher', 'cox_shugart', 'lijphart' o 'rae'). Por defecto es la formula de Gallagher
 #'
 #' @details Una discusión sobre distintas formulas para el cálculo puede encontrarse en
@@ -24,7 +24,7 @@
 #'
 #' @details \strong{NOTA:}
 #'
-#' @details para calcular el grado de desprorpoción el parámetro \code{level} de \code{\link{get_election_data}} debe ser el que descarga por defecto: "provincia"
+#' @details para calcular el grado de desproporción el parámetro \code{level} de \code{\link{get_election_data}} debe ser el que descarga por defecto: "provincia"
 #'  (\emph{To compute the degree of disproportion, the parameter \code{level} of \code{\link{get_election_data}} must be "provincia" (\emph{default})}).
 #'
 #' @seealso  \code{\link{compute_competitiveness}, \link{compute_seats}, \link{compute_nep}}
@@ -37,7 +37,7 @@
 #' tucuman_dip_gral_2017
 #'
 #' tucuman_dip_gral_2017 %>%
-#'   compute_disproportion()
+#'   electorAr::compute_disproportion()
 #'
 #' @export
 
@@ -46,13 +46,15 @@
 compute_disproportion <- function(data,
                                   formula = "gallagher"){
 
+  assertthat::assert_that(is.data.frame(data),
+                          msg = glue::glue("data is not a valid object. You can download a valid data.frame with get_election_data()"))
 
   assertthat::assert_that("listas" %in% colnames(data),
                           msg = "data is not in a long format. Use 'make_long()' to transform it")
 
   assertthat::assert_that(unique(data$category) %in% c("dip", "sen"),
-                          msg = "compute_disproportion is only possible for legislative elections ('dip', 'sen').
-                          Explore them with show_available_elections()")
+                          msg = "compute_disproportion() is only possible for legislative elections ('dip', 'sen').
+                          Explore them with show_available_elections(source = 'data')")
 
   assertthat::assert_that(formula %in% c("gallagher",
                                          "rae",

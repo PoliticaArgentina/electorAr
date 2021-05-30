@@ -7,13 +7,13 @@
 compute_competitiveness(data, level = "provincia")
 }
 \arguments{
-\item{data}{un tibble guardado como objeto en el Enviroment luego de consultar \code{\link{get_election_data}}
-(\emph{A tibble saved as an object in the Enviroment after querying \code{\link{get_election_data}}}).}
+\item{data}{un tibble guardado como objeto en el Enviroment luego de consultar \code{\link{get_election_data}} o \code{\link{get_election_results}}
+(\emph{A tibble saved as an object in the Enviroment after querying \code{\link{get_election_data}} or \code{\link{get_election_results}}}).}
 
 \item{level}{un character que establece el nivel de agregacion sobre el que se quiere calcular la competitividad:
-por defualt es \code{provincia} y se desagregan las observaciones asignando los valores \code{departamento} o \code{circuito} al parametro
+por defualt es \code{provincia} y para datos obtenidos con \code{\link{get_election_data}} se desagregan las observaciones asignando los valores \code{departamento} o \code{circuito} al parametro
 (\emph{Establishes the level of aggregation on which you want to compute competitiveness: by definition it is \code{provincia}
-and the observations are disaggregated by assigning the values \code{departamento} or \code{circuito} to the parameter}).}
+and for data obtained with \code{\link{get_election_data}} the observations are disaggregated by assigning the values \code{departamento} or \code{circuito} to the parameter}).}
 }
 \value{
 devuelve un tibble con \code{class "tbl_df","tbl", "data.frame"} con el computo de competitividad de una elccion. El resultado puede
@@ -33,18 +33,18 @@ La fórmula utilizada es:  \deqn{Competitividad = 1 - (a - b)}
 
 \strong{REQUISITO:}
 
-El formato de \code{data} debe ser \code{long} para calcular \code{\link{compute_competitiveness}}.
+Para datos obtenidos con \code{\link{get_election_data}} el formato de \code{data} debe ser \code{long} para calcular \code{\link{compute_competitiveness}}.
 Si \code{data} es \emph{wide} se puede transformar con \code{\link{make_long}}
-(\emph{\code{long} format of \code{data} is required for \code{\link{compute_competitiveness}}. If \code{data} is in \emph{wide} format
+(\emph{For data obtained with \code{\link{get_election_data}} \code{long} format of \code{data} is required for \code{\link{compute_competitiveness}}. If \code{data} is in \emph{wide} format
 you can transform it with \code{\link{make_long}}}).
 }
 \examples{
 
    tucuman_dip_gral_2017
 
-   tucuman_dip_gral_2017 \%>\% 
+   tucuman_dip_gral_2017 \%>\%
      compute_competitiveness()
-     
+
 }
 \seealso{
 \code{\link{compute_nep}, \link{compute_seats}, \link{compute_disproportion}}

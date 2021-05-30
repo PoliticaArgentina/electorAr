@@ -1,40 +1,34 @@
 Package: electorAr
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Toolbox for Argentina's Electoral Data
+Version: 0.0.1.0
 Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person(given = "Juan Pablo",
+           family = "Ruiz Nicolini",
+           role = c("aut", "cre", "cph"),
+           email = "juanpabloruiznicolini@gmail.com",
+           comment = c(ORCID = "0000-0002-3138-6343"))
+Description: The package provides tools for accessing and working with electoral data from Argentina /// El paquete facilita herramientas para el acceso a datos y el trabajo con datos electorales de Argentina. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Imports: 
-    magrittr,
-    RColorBrewer,
+Imports:
     assertthat,
     attempt,
     curl,
     dplyr,
     forcats,
-    geofacet,
-    ggplot2,
-    ggthemes,
     glue,
-    gt,
     httr,
     purrr,
-    readr,
     rvest,
-    scales,
     stringr,
     tibble,
     tidyr,
-    xml2
+    xml2,
+    magrittr,
+    vroom
 Depends: 
     R (>= 2.10)
 Suggests: 

@@ -2,8 +2,10 @@
 #'  (\emph{Elections collection})
 #'
 #' @description
-#' Función que devuelve un tibble con los parámetros necesarios para llamar elecciones con \code{\link{get_election_data}}
-#'  (\emph{Function that returns a tibble with the necessary parameters to call elections with} \code{\link{get_election_data}}).
+#' Función que devuelve un tibble con los parámetros necesarios para llamar elecciones con \code{\link{get_election_data}} o \code{\link{get_election_results}}
+#'  (\emph{Function that returns a tibble with the necessary parameters to call elections with} \code{\link{get_election_data}} or \code{\link{get_election_results}}).
+#'
+#' @param source Fuente de consulta. Las opciones son 'data' para \code{\link{get_election_data}} y 'results' para \code{\link{get_election_results}}
 #'
 #' @param viewer Por defecto es \code{FALSE}. Cuando \code{TRUE} devuelve una tabla en el \emph{Viewer} de \emph{RStudio}
 #'  (\emph{The default is \code{FALSE}. When \code{TRUE} it returns a table in \emph{RStudio Viewer}}).
@@ -17,12 +19,13 @@
 #'
 #' @examples
 #'
-#'  show_available_elections(viewer = FALSE)
+#'  show_available_elections(source= 'data', viewer = FALSE)
 #'
 #'
 #' @export
 
-show_available_elections <- function(viewer = FALSE){
+show_available_elections <- function(source = NULL,
+                                     viewer = FALSE){
 
 
   # Check for internet coection
@@ -30,10 +33,40 @@ show_available_elections <- function(viewer = FALSE){
                        msg = "No se detecto acceso a internet. Por favor checkea tu conexion.")
 
 
+  # Data source check
+
+  assertthat::assert_that(!is.null(source),
+                          msg = "You must provide valid character parameters for source type. Options are 'results' or 'data'")
+
+  assertthat::assert_that(is.character(source),
+                          msg = "'source' must be an character string. Please select a correct option: 'results' or 'data'")
+
+  assertthat::assert_that(source %in% c("results", "data"),
+                          msg = "Please select a correct 'source'. Options are 'results' or 'data'")
+
 
   # Get list of files from github data repo
 
-  url <- 'https://github.com/electorArg/PolAr_Data/tree/master/data'
+  url_definitivos <- 'https://github.com/PoliticaArgentina/data_warehouse/tree/master/electorAr/data/escrutinios_definitivos'
+
+  url_provisorios <- 'https://github.com/PoliticaArgentina/data_warehouse/tree/master/electorAr/data/escrutinios_provisorios'
+
+          #CHOOSE SOURCE OF DATA
+
+          url <- if(source == "results"){
+
+            url_definitivos
+
+          } else {
+
+            url_provisorios
+
+            }
+
+          # DEFINE SCRAPPING SOURCE URL
+
+          type <- dplyr::case_when(source == "results"~ "definitivos",
+                                   source == "data" ~ "provisorios")
 
   # GET DATA
 
@@ -65,7 +98,7 @@ show_available_elections <- function(viewer = FALSE){
     stats::na.omit() %>%
     base::as.data.frame()  %>%
     dplyr::rename(name = V1) %>%
-    dplyr::mutate(name = stringr::str_remove(name, pattern = "/electorArg/PolAr_Data/blob/master/data/")) %>%
+    dplyr::mutate(name = stringr::str_remove(name, pattern = glue::glue("/PoliticaArgentina/data_warehouse/blob/master/electorAr/data/escrutinios_{type}/"))) %>%
     tidyr::separate(col = name, into = c("district", "category", "round"),
              sep = "\\_", remove = T) %>%
     dplyr::mutate(year = stringr::str_remove_all(round, "\\D"),
