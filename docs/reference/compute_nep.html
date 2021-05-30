@@ -100,7 +100,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/PoliticaArgentina/electorAr/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -116,7 +121,7 @@
     <div class="page-header">
     <h1>Calcula Numero Efectivo de Partidos Politicos - NEP
 (<em>Computes Effective Number of Political Parties</em>)</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/PoliticaArgentina/electorAr/blob/master/R/compute_nep.R'><code>R/compute_nep.R</code></a></small>
     <div class="hidden name"><code>compute_nep.Rd</code></div>
     </div>
 
@@ -198,11 +203,11 @@ will be made: <code>provincia</code>, <code>departamento</code> or <code>circuit
 #&gt; </span><span style='color: #BCBCBC;'>6</span><span> dip      gral   </span><span style='text-decoration: underline;'>2</span><span>017 23      TUCUMAN     1</span><span style='text-decoration: underline;'>217</span><span>274 nulos    </span><span style='text-decoration: underline;'>12</span><span>947</div><div class='input'>
 <span class='va'>tucuman_dip_gral_2017</span> <span class='op'>%&gt;%</span>
   <span class='fu'>electorAr</span><span class='fu'>::</span><span class='fu'>compute_nep</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 2 x 3</span><span>
-#&gt;   codprov value index           
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 23       2.47 Golosov         
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 23       2.94 Laakso-Taagepera</div><div class='input'>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 2 x 6</span><span>
+#&gt;   codprov value index             year category round
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 23       2.47 Golosov           </span><span style='text-decoration: underline;'>2</span><span>017 dip      gral 
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 23       2.94 Laakso-Taagepera  </span><span style='text-decoration: underline;'>2</span><span>017 dip      gral </div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

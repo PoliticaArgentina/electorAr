@@ -1,5 +1,6 @@
 
-# Datos y herramientas `elector`ales de `Ar`rgentina usando `R` <a><img src="man/figures/logo.png" width="200" align="right" /></a>
+
+## Datos y herramientas `elector`ales de `Ar`rgentina usando `R` <a><img src="man/figures/logo.png" width="200" align="right" /></a>
 
 
 `{electorAr}` brinda herramientas que facilitan el acceso y el trabajo con datos electorales de Argentina desde `R`. 

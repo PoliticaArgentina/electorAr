@@ -2,11 +2,19 @@ Package: electorAr
 Title: Toolbox for Argentina's Electoral Data
 Version: 0.0.1.0
 Authors@R: 
-    person(given = "Juan Pablo",
+    c(person(given = "Juan Pablo",
            family = "Ruiz Nicolini",
            role = c("aut", "cre", "cph"),
            email = "juanpabloruiznicolini@gmail.com",
-           comment = c(ORCID = "0000-0002-3138-6343"))
+           comment = c(ORCID = "0000-0002-3138-6343")),
+    person(given = "Iván",
+           family = "Lewin",
+           email= "ivanlewin@protonmail.com", 
+           role = c("ctb")),
+    person(given = "Franco",
+           family = "Galeano",
+           email= "fgaleano1996@gmail.com", 
+           role = c("ctb")))
 Description: The package provides tools for accessing and working with electoral data from Argentina /// El paquete facilita herramientas para el acceso a datos y el trabajo con datos electorales de Argentina. 
 License: MIT + file LICENSE
 Encoding: UTF-8

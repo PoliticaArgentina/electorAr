@@ -100,7 +100,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/PoliticaArgentina/electorAr/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -116,7 +121,7 @@
     <div class="page-header">
     <h1>Diccionario de elecciones disponibles
 (<em>Elections collection</em>)</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/PoliticaArgentina/electorAr/blob/master/R/show_available_elections.R'><code>R/show_available_elections.R</code></a></small>
     <div class="hidden name"><code>show_available_elections.Rd</code></div>
     </div>
 
@@ -153,9 +158,22 @@ object of <code>class "datatables","htmlwidget"</code></em>).</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
  <span class='fu'>show_available_elections</span><span class='op'>(</span>source<span class='op'>=</span> <span class='st'>'data'</span>, viewer <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in show_available_elections(source = "data", viewer = FALSE): unused argument (source = "data")</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 426 x 5</span><span>
+#&gt;    district category round  year  NOMBRE   
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> arg      presi    balota 2015  ARGENTINA
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> arg      presi    gral   2003  ARGENTINA
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> arg      presi    gral   2007  ARGENTINA
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> arg      presi    gral   2011  ARGENTINA
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> arg      presi    gral   2015  ARGENTINA
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> arg      presi    gral   2019  ARGENTINA
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> arg      presi    paso   2011  ARGENTINA
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> arg      presi    paso   2015  ARGENTINA
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> arg      presi    paso   2019  ARGENTINA
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> caba     dip      gral   2005  CABA     
+#&gt; </span><span style='color: #949494;'># ... with 416 more rows</span><span></div><div class='input'>
 
-</div></pre>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
