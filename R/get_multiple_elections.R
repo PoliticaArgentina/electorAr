@@ -8,6 +8,8 @@
 #' @param data  data.frame con tantas filas como elecciones se quiere descargar y cuatro columnas con las siguientes variables: \emph{district}, \emph{category}, \emph{round}, \emph{year}
 #'  (\emph{data.frame with as many rows as elections you want to download and four columns with the following variables:\emph{district}, \emph{category}, \emph{round}, \emph{year}}).
 #'
+#' @param source Fuente de los datos. Las opciones son 'data' para datos\code{\link{get_election_data}} y 'results' para \code{\link{get_election_results}}
+#'
 #' @param level  parametro para definir el nivel de agregación de los datos que se quieren descargar ('provincia', 'departamento', 'circuito'). Por defecto es provincia
 #'   (\emph{parameter to define the level of aggregation of the data to be downloaded ('province', 'department', 'circuit'). Default is province}).
 #'
@@ -22,7 +24,7 @@
 #'  electoral results aggregated at the provincial level for each each row}).
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 # this is a long running example
 #'  electorAr::show_available_elections() %>%
 #'  dplyr::filter(district == "caba",
@@ -40,6 +42,7 @@
 
 
 get_multiple_elections <- function(data,
+                                   source = NULL,
                                    unnest = FALSE,
                                    level = "provincia") {
   ## Check for internet coection
@@ -63,6 +66,16 @@ No se detecto acceso a internet. Por favor chequear la conexion."
 Por favor seleccione un 'level' correcto. Compruebelos con 'show_available_elections()'"
   )
 
+  # Data source check
+
+  assertthat::assert_that(!is.null(source),
+                          msg = "You must provide valid character parameters for source type. Options are 'results' or 'data'")
+
+  assertthat::assert_that(is.character(source),
+                          msg = "'source' must be an character string. Please select a correct option: 'results' or 'data'")
+
+  assertthat::assert_that(source %in% c("results", "data"),
+                          msg = "Please select a correct 'source'. Options are 'results' or 'data'")
 
 
   # NEST ELECTIONS
@@ -85,8 +98,8 @@ Por favor seleccione un 'level' correcto. Compruebelos con 'show_available_elect
 
   default <- NULL
 
+  nested_election <-  if(source == "data") {
 
-  nested_election <-
     base::suppressWarnings(base::try(default <- nested %>%
                                        dplyr::mutate(
                                          election = purrr::map2(
@@ -101,7 +114,28 @@ Por favor seleccione un 'level' correcto. Compruebelos con 'show_available_elect
                                            )
                                          )
                                        ))
-    )
+                        )
+
+                    } else {
+
+      base::suppressWarnings(base::try(default <- nested %>%
+                                         dplyr::mutate(
+                                           election = purrr::map2(
+                                             .x = data,
+                                             .y = id,
+                                             .f = ~ electorAr::get_election_results(
+                                               district = .x$district,
+                                               category = .x$category,
+                                               round = .x$round,
+                                               year = .x$year
+                                             )
+                                           )
+                                         ))
+      )
+
+
+
+ }
 
 
   # NESTED OR UNNESTED OUTPUT

@@ -7,3 +7,25 @@ home:
 authors:
   Juan Pablo Ruiz Nicolini:
     href: https://tuqmano.ar
+  Franco Galeano:
+    href: https://github.com/tartagalensis
+  Iván Lewin:
+    href: https://github.com/ivanlewin
+reference:
+- title: "Data"
+  desc: Functions for exploring and downloading data
+- subtitle: Explore
+  contents:
+  - 'show_available_elections'
+- subtitle: Download
+  contents:
+  - starts_with("get")
+- title: "Computing"
+  desc: "Functions for computation"
+  contents:
+  - starts_with("compute")
+- title: "Auxiliar"
+  desc: "Auxiliar functions"
+  contents:
+  - starts_with("make")
+  - 'get_names'
