@@ -34,3 +34,5 @@ Depends:
 Suggests: 
     DT,
     knitr
+URL: https://github.com/PoliticaArgentina/electorAr
+BugReports: https://github.com/PoliticaArgentina/electorAr/issues
