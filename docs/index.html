@@ -73,6 +73,7 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
+
 <div id="datos-y-herramientas-electorales-de-arrgentina-usando-r-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#datos-y-herramientas-electorales-de-arrgentina-usando-r-" class="anchor"></a>Datos y herramientas <code>elector</code>ales de <code>Ar</code>rgentina usando <code>R</code> <a><img src="reference/figures/logo.png" width="200" align="right"></a>
@@ -89,12 +90,122 @@
 <h3 class="hasAnchor">
 <a href="#versi%C3%B3n-en-desarrollo-development-version" class="anchor"></a>Versión en desarrollo (<em>Development version</em>)</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># install.packages('devtools') si no tiene instalado devtools</span>
+<code class="sourceCode R"><span class="co"># install.packages('devtools') si no tiene instalado devtools</span>
 
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"politicaargentina/electorAr"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
+<div id="ejemplo-de-uso-usage" class="section level2">
+<h2 class="hasAnchor">
+<a href="#ejemplo-de-uso-usage" class="anchor"></a>Ejemplo de uso (<em>Usage</em>)</h2>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/PoliticaArgentina/electorAr">electorAr</a></span><span class="op">)</span>
+
+<span class="co"># Elecciones disponibles según dos fuente de datos</span>
+<span class="co"># 'results' para datos agregados y 'data' para escrutinios provisorios </span>
+
+<span class="fu"><a href="reference/show_available_elections.html">show_available_elections</a></span><span class="op">(</span>source <span class="op">=</span> <span class="st">"results"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 705 x 5</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    district category round  year  NOMBRE   </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;    </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 arg      presi    balota 2015  ARGENTINA</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 arg      presi    gral   1946  ARGENTINA</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 arg      presi    gral   1951  ARGENTINA</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 arg      presi    gral   1958  ARGENTINA</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 arg      presi    gral   1963  ARGENTINA</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 arg      presi    gral   1983  ARGENTINA</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 arg      presi    gral   1989  ARGENTINA</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 arg      presi    gral   1995  ARGENTINA</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 arg      presi    gral   1999  ARGENTINA</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 arg      presi    gral   2003  ARGENTINA</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 695 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Filtro eleciones de interés</span>
+<span class="op">(</span><span class="va">gobernadores_tucuman</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/show_available_elections.html">show_available_elections</a></span><span class="op">(</span>source <span class="op">=</span> <span class="st">"results"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">NOMBRE</span> <span class="op">==</span> <span class="st">"TUCUMAN"</span>, 
+                <span class="va">category</span> <span class="op">==</span> <span class="st">"gober"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 10 x 5</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    district category round year  NOMBRE </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 tucuman  gober    gral  1983  TUCUMAN</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 tucuman  gober    gral  1987  TUCUMAN</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 tucuman  gober    gral  1991  TUCUMAN</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 tucuman  gober    gral  1995  TUCUMAN</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 tucuman  gober    gral  1999  TUCUMAN</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 tucuman  gober    gral  2003  TUCUMAN</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 tucuman  gober    gral  2007  TUCUMAN</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 tucuman  gober    gral  2011  TUCUMAN</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 tucuman  gober    gral  2015  TUCUMAN</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 tucuman  gober    gral  2019  TUCUMAN</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Descargo multiples elecciones seleccionadas</span>
+
+<span class="op">(</span><span class="va">elecciones</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_multiple_elections.html">get_multiple_elections</a></span><span class="op">(</span><span class="va">gobernadores_tucuman</span>,
+                                      source <span class="op">=</span> <span class="st">'results'</span> <span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 10 x 2</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">## # Groups:   id [10]</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    id                      election                  </span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;glue&gt;                  &lt;list&gt;                    </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 tucuman_gober_gral_1983 &lt;spec_tbl_df[,9] [19 x 9]&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 tucuman_gober_gral_1987 &lt;spec_tbl_df[,9] [16 x 9]&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 tucuman_gober_gral_1991 &lt;spec_tbl_df[,8] [12 x 8]&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 tucuman_gober_gral_1995 &lt;spec_tbl_df[,8] [11 x 8]&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 tucuman_gober_gral_1999 &lt;spec_tbl_df[,8] [9 x 8]&gt; </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 tucuman_gober_gral_2003 &lt;spec_tbl_df[,8] [10 x 8]&gt;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 tucuman_gober_gral_2007 &lt;spec_tbl_df[,8] [15 x 8]&gt;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 tucuman_gober_gral_2011 &lt;spec_tbl_df[,8] [17 x 8]&gt;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 tucuman_gober_gral_2015 &lt;spec_tbl_df[,8] [9 x 8]&gt; </span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 tucuman_gober_gral_2019 &lt;spec_tbl_df[,8] [11 x 8]&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Seleciono la elección a Gobernador de TUCUMAN en 1991</span>
+<span class="op">(</span><span class="va">eleccion91</span> <span class="op">&lt;-</span> <span class="va">elecciones</span><span class="op">$</span><span class="va">election</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 12 x 8</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    category round  year codprov name_prov listas                 votos electores</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;    &lt;chr&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 gober    gral   1991 23      TUCUMAN   Frente De La Esperan~ 284479    771330</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 gober    gral   1991 23      TUCUMAN   Fuerza Republicana    247802    771330</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 gober    gral   1991 23      TUCUMAN   Union Civica Radical   23424    771330</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 gober    gral   1991 23      TUCUMAN   Laborista De Tucuman    3382    771330</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 gober    gral   1991 23      TUCUMAN   Frente Por El Progre~    886    771330</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 gober    gral   1991 23      TUCUMAN   Obrero                   755    771330</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 gober    gral   1991 23      TUCUMAN   Movimiento Al Social~    724    771330</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 gober    gral   1991 23      TUCUMAN   Comunista                511    771330</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 gober    gral   1991 23      TUCUMAN   Federal                  460    771330</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 gober    gral   1991 23      TUCUMAN   Defensa Provincial B~    325    771330</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 11 gober    gral   1991 23      TUCUMAN   Votos En Blanco         9145    771330</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 12 gober    gral   1991 23      TUCUMAN   Votos Nulos             3162    771330</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Calculo indicadores</span>
+
+<span class="co"># Competitividad</span>
+<span class="fu"><a href="reference/compute_competitiveness.html">compute_competitiveness</a></span><span class="op">(</span><span class="va">eleccion91</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 1 x 5</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">##   codprov competitividad  year category round</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;            &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 23               0.936  1991 gober    gral</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Concentración</span>
+<span class="fu"><a href="reference/compute_concentration.html">compute_concentration</a></span><span class="op">(</span><span class="va">eleccion91</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 1 x 5</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="do">##   codprov concentration  year category round</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;           &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 23               0.93  1991 gober    gral</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Número Efectivo de Partidos (NEP)</span>
+<span class="fu"><a href="reference/compute_nep.html">compute_nep</a></span><span class="op">(</span><span class="va">eleccion91</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 2 x 6</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">##   value index             year category round codprov</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;dbl&gt; &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;  </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1  2.16 Golosov           1991 gober    gral  23     </span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 2  2.31 Laakso-Taagepera  1991 gober    gral  23</span></span></code></pre></div>
+</div>
+<div id="electorar-es-parte-del-universo-de-paquetes-polar" class="section level2">
+<h2 class="hasAnchor">
+<a href="#electorar-es-parte-del-universo-de-paquetes-polar" class="anchor"></a><code>{electorAr}</code> es parte del universo de paquetes <strong>polAr</strong>
+</h2>
+<p><img src="https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/collage.png"><!-- --></p>
+</div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

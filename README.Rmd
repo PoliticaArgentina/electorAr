@@ -1,0 +1,74 @@
+---
+output: github_document
+---
+
+## Datos y herramientas `elector`ales de `Ar`rgentina usando `R` <a><img src="man/figures/logo.png" width="200" align="right" /></a>
+
+
+`{electorAr}` brinda herramientas que facilitan el acceso y el trabajo con datos electorales de Argentina desde `R`. 
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental) 
+[![CRAN status](https://www.r-pkg.org/badges/version/electorAr)](https://CRAN.R-project.org/package=electorAr)
+[![R-CMD-check](https://github.com/PoliticaArgentina/electorAr/workflows/R-CMD-check/badge.svg)](https://github.com/PoliticaArgentina/electorAr/actions)
+<!-- badges: end -->
+
+
+---
+
+### INSTALACIÓN
+
+### Versión en desarrollo (*Development version*) 
+
+```r
+
+# install.packages('devtools') si no tiene instalado devtools
+
+devtools::install_github("politicaargentina/electorAr")
+
+```
+## Ejemplo de uso (_Usage_)
+
+```{r}
+library(electorAr)
+
+# Elecciones disponibles según dos fuente de datos
+# 'results' para datos agregados y 'data' para escrutinios provisorios 
+
+show_available_elections(source = "results")
+
+# Filtro eleciones de interés
+(gobernadores_tucuman <- show_available_elections(source = "results") %>% 
+  dplyr::filter(NOMBRE == "TUCUMAN", 
+                category == "gober"))
+
+# Descargo multiples elecciones seleccionadas
+
+(elecciones <- get_multiple_elections(gobernadores_tucuman,
+                                      source = 'results' ))
+
+# Seleciono la elección a Gobernador de TUCUMAN en 1991
+(eleccion91 <- elecciones$election[[3]])
+
+# Calculo indicadores
+
+# Competitividad
+compute_competitiveness(eleccion91)
+
+# Concentración
+compute_concentration(eleccion91)
+
+# Número Efectivo de Partidos (NEP)
+compute_nep(eleccion91)
+
+```
+
+
+## `{electorAr}` es parte del universo de paquetes **polAr**
+
+
+```{r, echo=FALSE}
+
+knitr::include_graphics("https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/collage.png")
+
+```

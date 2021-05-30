@@ -2,21 +2,23 @@
 % Please edit documentation in R/compute_seats.R
 \name{compute_seats}
 \alias{compute_seats}
-\title{Calcula número de bancas legislativas a repartir en una elección
-(\emph{Computes allocation of legislative seats})}
+\title{Calcula número de bancas legislativas a repartir en una elección}
 \usage{
 compute_seats(data)
 }
 \arguments{
 \item{data}{un data.frame con los resultados de una elección para agregados a nivel provincial
+
 (\emph{a data.frame with aggregate electoral results at provincial level}).}
 }
 \description{
 Función que calcula la distribución proporcional de escaños para la categoría Diputado Nacional y
 de mayoría/minoría para Senaor Nacional en función de votos obtenidos
+
 (\emph{Function that computes propotional allocation of Diputados and Senadores seats})
 }
 \details{
+(\emph{Computes allocation of legislative seats})
 \enumerate{
 \item La distribución de escaños esta regida por la formula del sistema \emph{D'Hondt} para Diputados y mayoría/minoría para Senadores.
 \item La cantidad de escaños de cada provincia dependen de su población con un mínimo de \eqn{5} por provincia.
@@ -28,7 +30,6 @@ En el caso de Senadores su mandato es de 6 años y se renuevan parcialmente por 
 }
 }
 \examples{
- \dontrun{
 electorAr::get_election_data(district = "caba",
                           category = "dip",
                           round = "gral",
@@ -38,7 +39,7 @@ electorAr::get_election_data(district = "caba",
 
 
  compute_seats(data = caba_dip_2007)
-          }
+
 
 }
 \seealso{

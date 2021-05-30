@@ -1,12 +1,15 @@
 #' Calcula número de bancas legislativas a repartir en una elección
+#'
 #'  (\emph{Computes allocation of legislative seats})
 #'
 #' @description
 #' Función que calcula la distribución proporcional de escaños para la categoría Diputado Nacional y
 #' de mayoría/minoría para Senaor Nacional en función de votos obtenidos
+#'
 #'  (\emph{Function that computes propotional allocation of Diputados and Senadores seats})
 #'
 #' @param data un data.frame con los resultados de una elección para agregados a nivel provincial
+#'
 #'  (\emph{a data.frame with aggregate electoral results at provincial level}).
 #'
 #' @details
@@ -22,8 +25,7 @@
 #'
 #'
 #' @examples
-#'  \dontrun{
-# this is a long running example
+
 #' electorAr::get_election_data(district = "caba",
 #'                           category = "dip",
 #'                           round = "gral",
@@ -33,7 +35,7 @@
 #'
 #'
 #'  compute_seats(data = caba_dip_2007)
-#'           }
+#'
 #'
 #' @seealso  \code{\link{compute_nep}, \link{compute_competitiveness}, \link{compute_disproportion}}
 #'
