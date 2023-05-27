@@ -1,6 +1,6 @@
 Package: electorAr
 Title: Toolbox for Argentina's Electoral Data
-Version: 0.0.1.0
+Version: 0.0.1.1
 Authors@R: 
     c(person(given = "Juan Pablo",
            family = "Ruiz Nicolini",

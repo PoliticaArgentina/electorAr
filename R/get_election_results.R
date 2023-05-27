@@ -155,7 +155,14 @@ Por favor seleccione una eleccipn valida. Consultelas con 'show_available_electi
                                 '17','20','21','22','18','19','24','23'))
 
 
+    ### SAN LUIS DISTRICT HARDCODING
 
+  district <- if(district == "sluis"){
+
+       "sanluis"} else{
+
+         district
+     }
 
             ## ELECTION URL
             url <- paste0("https://raw.githubusercontent.com/PoliticaArgentina/data_warehouse/master/electorAr/data/escrutinios_definitivos/",

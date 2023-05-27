@@ -107,6 +107,15 @@ show_available_elections <- function(source = NULL,
     tibble::as_tibble()
 
 
+  ### Hardcode San Luis dirtict name
+  # in results original file name doesnt match style (sanluis instead of sluis)
+  # hardcoding get_election_results() function too
+
+  filelist <- filelist %>%
+    dplyr::mutate(district = dplyr::case_when(
+      district == "sanluis" ~ "sluis",
+      TRUE ~ district
+    ))
 
   #### province character code and names ######
 
