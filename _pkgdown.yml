@@ -31,3 +31,13 @@ reference:
   contents:
   - starts_with("make")
   - 'get_names'
+- title: Data
+  desc: Expample toy dataset
+  contents:
+  - 'tucuman_dip_gral_2017'
+- title: "internal"
+  desc:
+  contents:
+   - 'electorAr'
+
+
