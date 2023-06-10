@@ -11,6 +11,7 @@ output: github_document
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental) 
 [![CRAN status](https://www.r-pkg.org/badges/version/electorAr)](https://CRAN.R-project.org/package=electorAr)
 [![R-CMD-check](https://github.com/PoliticaArgentina/electorAr/workflows/R-CMD-check/badge.svg)](https://github.com/PoliticaArgentina/electorAr/actions)
+
 <!-- badges: end -->
 
 

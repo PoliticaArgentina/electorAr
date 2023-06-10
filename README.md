@@ -11,6 +11,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![CRAN
 status](https://www.r-pkg.org/badges/version/electorAr)](https://CRAN.R-project.org/package=electorAr)
 [![R-CMD-check](https://github.com/PoliticaArgentina/electorAr/workflows/R-CMD-check/badge.svg)](https://github.com/PoliticaArgentina/electorAr/actions)
+
 <!-- badges: end -->
 
 ------------------------------------------------------------------------
@@ -36,7 +37,7 @@ library(electorAr)
 show_available_elections(source = "results")
 ```
 
-    ## # A tibble: 705 x 5
+    ## # A tibble: 728 x 5
     ##    district category round  year  NOMBRE   
     ##    <chr>    <chr>    <chr>  <chr> <chr>    
     ##  1 arg      presi    balota 2015  ARGENTINA
@@ -49,7 +50,7 @@ show_available_elections(source = "results")
     ##  8 arg      presi    gral   1995  ARGENTINA
     ##  9 arg      presi    gral   1999  ARGENTINA
     ## 10 arg      presi    gral   2003  ARGENTINA
-    ## # ... with 695 more rows
+    ## # ... with 718 more rows
 
 ``` r
 # Filtro eleciones de interés
@@ -81,18 +82,18 @@ show_available_elections(source = "results")
 
     ## # A tibble: 10 x 2
     ## # Groups:   id [10]
-    ##    id                      election                  
-    ##    <glue>                  <list>                    
-    ##  1 tucuman_gober_gral_1983 <spec_tbl_df[,9] [19 x 9]>
-    ##  2 tucuman_gober_gral_1987 <spec_tbl_df[,9] [16 x 9]>
-    ##  3 tucuman_gober_gral_1991 <spec_tbl_df[,8] [12 x 8]>
-    ##  4 tucuman_gober_gral_1995 <spec_tbl_df[,8] [11 x 8]>
-    ##  5 tucuman_gober_gral_1999 <spec_tbl_df[,8] [9 x 8]> 
-    ##  6 tucuman_gober_gral_2003 <spec_tbl_df[,8] [10 x 8]>
-    ##  7 tucuman_gober_gral_2007 <spec_tbl_df[,8] [15 x 8]>
-    ##  8 tucuman_gober_gral_2011 <spec_tbl_df[,8] [17 x 8]>
-    ##  9 tucuman_gober_gral_2015 <spec_tbl_df[,8] [9 x 8]> 
-    ## 10 tucuman_gober_gral_2019 <spec_tbl_df[,8] [11 x 8]>
+    ##    id                      election           
+    ##    <glue>                  <list>             
+    ##  1 tucuman_gober_gral_1983 <spc_tbl_ [19 x 9]>
+    ##  2 tucuman_gober_gral_1987 <spc_tbl_ [16 x 9]>
+    ##  3 tucuman_gober_gral_1991 <spc_tbl_ [12 x 8]>
+    ##  4 tucuman_gober_gral_1995 <spc_tbl_ [11 x 8]>
+    ##  5 tucuman_gober_gral_1999 <spc_tbl_ [9 x 8]> 
+    ##  6 tucuman_gober_gral_2003 <spc_tbl_ [10 x 8]>
+    ##  7 tucuman_gober_gral_2007 <spc_tbl_ [15 x 8]>
+    ##  8 tucuman_gober_gral_2011 <spc_tbl_ [17 x 8]>
+    ##  9 tucuman_gober_gral_2015 <spc_tbl_ [9 x 8]> 
+    ## 10 tucuman_gober_gral_2019 <spc_tbl_ [11 x 8]>
 
 ``` r
 # Seleciono la elección a Gobernador de TUCUMAN en 1991
@@ -100,20 +101,21 @@ show_available_elections(source = "results")
 ```
 
     ## # A tibble: 12 x 8
-    ##    category round  year codprov name_prov listas                 votos electores
-    ##    <chr>    <chr> <int> <chr>   <chr>     <chr>                  <dbl>     <dbl>
-    ##  1 gober    gral   1991 23      TUCUMAN   Frente De La Esperan~ 284479    771330
-    ##  2 gober    gral   1991 23      TUCUMAN   Fuerza Republicana    247802    771330
-    ##  3 gober    gral   1991 23      TUCUMAN   Union Civica Radical   23424    771330
-    ##  4 gober    gral   1991 23      TUCUMAN   Laborista De Tucuman    3382    771330
-    ##  5 gober    gral   1991 23      TUCUMAN   Frente Por El Progre~    886    771330
-    ##  6 gober    gral   1991 23      TUCUMAN   Obrero                   755    771330
-    ##  7 gober    gral   1991 23      TUCUMAN   Movimiento Al Social~    724    771330
-    ##  8 gober    gral   1991 23      TUCUMAN   Comunista                511    771330
-    ##  9 gober    gral   1991 23      TUCUMAN   Federal                  460    771330
-    ## 10 gober    gral   1991 23      TUCUMAN   Defensa Provincial B~    325    771330
-    ## 11 gober    gral   1991 23      TUCUMAN   Votos En Blanco         9145    771330
-    ## 12 gober    gral   1991 23      TUCUMAN   Votos Nulos             3162    771330
+    ##    category round  year codprov name_prov listas                   votos elect~1
+    ##    <chr>    <chr> <int> <chr>   <chr>     <chr>                    <dbl>   <dbl>
+    ##  1 gober    gral   1991 23      TUCUMAN   Frente De La Esperanza  284479  771330
+    ##  2 gober    gral   1991 23      TUCUMAN   Fuerza Republicana      247802  771330
+    ##  3 gober    gral   1991 23      TUCUMAN   Union Civica Radical     23424  771330
+    ##  4 gober    gral   1991 23      TUCUMAN   Laborista De Tucuman      3382  771330
+    ##  5 gober    gral   1991 23      TUCUMAN   Frente Por El Progreso~    886  771330
+    ##  6 gober    gral   1991 23      TUCUMAN   Obrero                     755  771330
+    ##  7 gober    gral   1991 23      TUCUMAN   Movimiento Al Socialis~    724  771330
+    ##  8 gober    gral   1991 23      TUCUMAN   Comunista                  511  771330
+    ##  9 gober    gral   1991 23      TUCUMAN   Federal                    460  771330
+    ## 10 gober    gral   1991 23      TUCUMAN   Defensa Provincial Ban~    325  771330
+    ## 11 gober    gral   1991 23      TUCUMAN   Votos En Blanco           9145  771330
+    ## 12 gober    gral   1991 23      TUCUMAN   Votos Nulos               3162  771330
+    ## # ... with abbreviated variable name 1: electores
 
 ``` r
 # Calculo indicadores
