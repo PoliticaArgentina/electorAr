@@ -223,7 +223,7 @@ Por favor seleccione una eleccipn valida. Consultelas con 'show_available_electi
                   district =="scruz" ~  "santa cruz",
                   district =="sfe" ~    "santa fe",
                   district =="sjuan" ~  "san juan",
-                  district =="sluis" ~  "san luis",
+                  district =="sanluis" ~  "san luis",
                   district =="tdf" ~  "tierra del fuego",
                   district =="tucuman" ~ "tucuman")) %>%
                 dplyr::mutate(name_prov = stringr::str_to_upper(name_prov)) %>%
