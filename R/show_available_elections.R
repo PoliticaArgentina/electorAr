@@ -24,6 +24,9 @@
 #'
 #' @export
 
+
+
+
 show_available_elections <- function(source = NULL,
                                      viewer = FALSE){
 
@@ -33,7 +36,18 @@ show_available_elections <- function(source = NULL,
                        msg = "No se detecto acceso a internet. Por favor checkea tu conexion.")
 
 
-  # Data source check
+  # Check response status (non exported function)
+
+  check_status <- function(res){
+    attempt::stop_if_not(.x = httr::status_code(res),
+                         .p = ~ .x == 200,
+                         msg = httr::message_for_status(res, "get data from  Github API"))
+  }
+
+
+
+
+  # Data source input check
 
   assertthat::assert_that(!is.null(source),
                           msg = "You must provide valid character parameters for source type. Options are 'results' or 'data'")
@@ -45,81 +59,66 @@ show_available_elections <- function(source = NULL,
                           msg = "Please select a correct 'source'. Options are 'results' or 'data'")
 
 
-  # Get list of files from github data repo
-
-  url_definitivos <- 'https://github.com/PoliticaArgentina/data_warehouse/tree/master/electorAr/data/escrutinios_definitivos'
-
-  url_provisorios <- 'https://github.com/PoliticaArgentina/data_warehouse/tree/master/electorAr/data/escrutinios_provisorios'
-
-          #CHOOSE SOURCE OF DATA
-
-          url <- if(source == "results"){
-
-            url_definitivos
-
-          } else {
-
-            url_provisorios
-
-            }
-
-          # DEFINE SCRAPPING SOURCE URL
-
-          type <- dplyr::case_when(source == "results"~ "definitivos",
-                                   source == "data" ~ "provisorios")
-
-  # GET DATA
-
-  # Set default value for try()
-
-  default <- NULL
-
-  df <- base::suppressWarnings(base::try(default <- xml2::read_html(url),
-                                         silent = TRUE))
-
-  if(is.null(default)){
-
-    df <- base::message("Fail to download data. Source is not available // La fuente de datos no esta disponible")
-
-  } else {
-
-    pg <- df
 
 
-    # Get files list from data_warehouse github repo
+  # Github API Data Source
 
 
-  pg <- xml2::read_html(url)
+  gh_url <- 'https://api.github.com/repos/PoliticaArgentina/data_warehouse/git/trees/master?recursive=1' # DATA REPO TREE
 
 
-  filelist <- rvest::html_nodes(pg, "a") %>%
-    rvest::html_attr(name = "href" ) %>%
-    stringr::str_match('.*csv') %>%
-    stats::na.omit() %>%
-    base::as.data.frame()  %>%
-    dplyr::rename(name = V1) %>%
-    dplyr::mutate(name = stringr::str_remove(name, pattern = glue::glue("/PoliticaArgentina/data_warehouse/blob/master/electorAr/data/escrutinios_{type}/"))) %>%
+  response <- httr::GET(url = gh_url)  # GET data from source
+
+  check_status(response) # Check if available / if not, error message
+
+
+
+  # DEFINE SOURCE DATA TYPE (from input param)
+
+  type <- dplyr::case_when(source == "results"~ "definitivos",
+                           source == "data" ~ "provisorios")
+
+
+  # Parse DATA (from JSON format)
+
+  gh_content <- jsonlite::fromJSON(
+
+     httr::content(response, 'text')
+
+    )
+
+
+  # Wrangle data
+
+  files <- tibble::as_tibble(purrr::pluck(.x = gh_content, 'tree')) %>% # Extract 'gh tree' elements from nested data
+    dplyr::select(path)  %>% # select col of interest (file paths)
+    dplyr::filter(stringr::str_detect(path, "electorAr/data"), # Filter files of interes (*csv files from, specific directories and source type - input param)
+                  stringr::str_detect(path, ".csv"),
+                  stringr::str_detect(path, type)) %>%
+    dplyr::mutate(name = stringr::str_remove(path, pattern = glue::glue("electorAr/data/escrutinios_{type}/"))) %>% # cleans and shape data
     tidyr::separate(col = name, into = c("district", "category", "round"),
-             sep = "\\_", remove = T) %>%
+                    sep = "\\_", remove = T) %>%
     dplyr::mutate(year = stringr::str_remove_all(round, "\\D"),
-           round = stringr::str_remove_all(round, "\\d")) %>%
+                  round = stringr::str_remove_all(round, "\\d")) %>%
     dplyr::mutate(round = stringr::str_remove_all(round, ".csv")) %>%
-    tibble::as_tibble()
+    tibble::as_tibble() %>%
+    dplyr::select(-path)
+
 
 
   ### Hardcode San Luis dirtict name
   # in results original file name doesnt match style (sanluis instead of sluis)
   # hardcoding get_election_results() function too
 
-  filelist <- filelist %>%
+  files <- files %>%
     dplyr::mutate(district = dplyr::case_when(
       district == "sanluis" ~ "sluis",
       TRUE ~ district
     ))
 
-  #### province character code and names ######
+  #### province character code and names: make legible districts ID names
 
-  df <- filelist %>%
+  df <- files %>%
     dplyr::mutate(NOMBRE = dplyr::case_when(
       district =="arg" ~    "argentina",
       district =="caba" ~     "caba",
@@ -149,33 +148,39 @@ show_available_elections <- function(source = NULL,
     dplyr::mutate(NOMBRE = stringr::str_to_upper(NOMBRE))
 
 
-
+#### Viewer VS Console printing option
 
 
   if(viewer == TRUE){
 
-     df <-  filelist %>%
+    df <-  files %>%
       DT::datatable(options = list(
-                    language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json')))%>%
-       DT::formatStyle(
-         'category',
-         target = 'cell',
-         backgroundColor = DT::styleEqual(c("sen","presi", "dip"),
-                                      c("#91bfdb","#ffffbf","#fc8d59")))%>%
-       DT::formatStyle(
-         'round',
-         target = 'cell',
-         backgroundColor = DT::styleEqual(c("paso","gral"),
-                                          c("#f1a340","#998ec3")))
+        language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json')))%>%
+      DT::formatStyle(
+        'category',
+        target = 'cell',
+        backgroundColor = DT::styleEqual(c("sen","presi", "dip", "gober"),
+                                         c("#91bfdb","#ffffbf","#fc8d59", "#727bad")))%>%
+      DT::formatStyle(
+        'round',
+        target = 'cell',
+        backgroundColor = DT::styleEqual(c("paso","gral", "balota"),
+                                         c("#f1a340","#998ec3", "#32a852")))
 
-     print(df)
+    return(df)
 
 
-     } else {
-      df
+  } else {
+
+
+    return(df)
+
+
   }
 
 
-    }
-  }
+}
+
+
+
 
