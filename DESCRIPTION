@@ -30,13 +30,12 @@ Imports:
     glue,
     httr,
     purrr,
-    rvest,
     stringr,
     tibble,
     tidyr,
-    xml2,
     magrittr,
-    vroom
+    vroom, 
+    jsonlite
 Depends: 
     R (>= 2.10)
 Suggests: 

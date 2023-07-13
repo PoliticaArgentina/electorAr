@@ -46,4 +46,5 @@ if(getRversion() >= "2.15.1")  utils::globalVariables(
                                           "vot_proCodigoProvincia",
                                           "votes_pct",
                                           "votos",
-                                          "year"))
+                                          "year",
+                                          "path"))
