@@ -1,6 +1,10 @@
+# electorAr 0.0.1.3
+
+Fixes #5 BUG: `show_available_elections()` now with a new worflow (not scrapping and interacting with Github API)
+
 # electorAr 0.0.1.2
 
-* Fixes #4 fix BUG: `NA` generation y San Luis elections when `calling get_election_results()` related to #2
+* Fixes #4 fix BUG: `NA` generation y San Luis elections when calling  `get_election_results()` related to #2
 
 # electorAr 0.0.1.1
 
